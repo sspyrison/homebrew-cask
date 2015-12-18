@@ -47,6 +47,10 @@ module Hbc::DSL
 
   def artifacts; self.class.artifacts; end
 
+  def caskroom_path; self.class.caskroom_path; end
+
+  def staged_path; self.class.staged_path; end
+
   def caveats; self.class.caveats; end
 
   def accessibility_access; self.class.accessibility_access; end
@@ -215,6 +219,16 @@ module Hbc::DSL
 
     def artifacts
       @artifacts ||= Hash.new { |hash, key| hash[key] = Set.new }
+    end
+
+    def caskroom_path
+      @caskroom_path ||= Hbc.caskroom.join(self.token)
+    end
+
+    def staged_path
+      return @staged_path if @staged_path
+      cask_version = self.version || :unknown
+      @staged_path = self.caskroom_path.join(cask_version.to_s)
     end
 
     def caveats(*string, &block)
