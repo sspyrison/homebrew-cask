@@ -68,6 +68,7 @@ Each of the following stanzas is required for every Cask.
 | `version`          | no                            | application version; give value of `:latest`  if versioned downloads are not offered
 | `sha256`           | no                            | SHA-256 checksum of the file downloaded from `url`, calculated by the command `shasum -a 256 <file>`. Can be suppressed by using the special value `:no_check`. (see also [Checksum Stanza Details](#checksum-stanza-details))
 | `url`              | no                            | URL to the `.dmg`/`.zip`/`.tgz`/`.tbz2` file that contains the application. A [comment](#when-url-and-homepage-hostnames-differ-add-a-comment) should be added if the hostnames in the `url` and `homepage` stanzas differ (see also [URL Stanza Details](#url-stanza-details))
+| `name`             | yes                           | a string providing the full and proper name defined by the vendor (see also [Name Stanza Details](#name-stanza-details))
 | `homepage`         | no                            | application homepage; used for the `brew cask home` command
 | `license`          | no                            | a symbol identifying the license category for the application. (see also [License Stanza Details](#license-stanza-details))
 
@@ -99,7 +100,6 @@ Each Cask must declare one or more *artifacts* (i.e. something to install)
 
 | name                   | multiple occurrences allowed? | value       |
 | ---------------------- |------------------------------ | ----------- |
-| `name`                 | yes                           | a string providing the full and proper name defined by the vendor (see also [Name Stanza Details](#name-stanza-details))
 | `uninstall`            | yes                           | procedures to uninstall a Cask. Optional unless the `pkg` stanza is used. (see also [Uninstall Stanza Details](#uninstall-stanza-details))
 | `zap`                  | yes                           | additional procedures for a more complete uninstall, including user files and shared resources. (see also [Zap Stanza Details](#zap-stanza-details))
 | `appcast`              | no                            | a URL providing an appcast feed to find updates for this Cask. (see also [Appcast Stanza Details](#appcast-stanza-details))
@@ -182,6 +182,8 @@ There are currently some arbitrary limitations on Cask tokens which are in the p
 Its first instance should use the latin alphabet, include the software vendor’s name, and be as verbose as possible while still making sense.
 
 A good example is [`pycharm-ce`](https://github.com/caskroom/homebrew-cask/blob/fc05c0353aebb28e40db72faba04b82ca832d11a/Casks/pycharm-ce.rb#L6#L7). `Jetbrains PyCharm Community Edition` makes sense even though it is likely never referenced as such anywhere, but `Jetbrains PyCharm Community Edition CE` doesn’t, hence why it has a second line. Another example are casks whose original names do not use the latin alphabet, like [`cave-story`](https://github.com/caskroom/homebrew-cask/blob/0fe48607f5656e4f1de58c6884945378b7e6f960/Casks/cave-story.rb#L7#L9).
+
+Note that `brew cask search` and `brew cask list` are not yet capable of using the information stored in the `name` stanza.
 
 ## Caveats Stanza Details
 
@@ -293,15 +295,15 @@ $ ./developer/bin/list_url_attributes_on_file <file>
 
 ## Appcast Stanza Details
 
-The value of the `appcast` stanza is a string, holding the URL for an appcast which provides information on future updates. Generally, the appcast URL returns Sparkle-compatible XML, though that is not required.
+The value of the `appcast` stanza is a string, holding the URL for an appcast which provides information on future updates.
 
-Example: [adium.rb](../../d7f8eafa4fc01a6c383925d9962b5da33876a8b6/Casks/adium.rb#L6)
-
-### Additional Appcast Parameters
+### Required Appcast Parameters
 
 | key                | value       |
 | ------------------ | ----------- |
 | `:sha256`          | a string holding the SHA-256 checksum of the most recent appcast which matches the current Cask versioning
+
+Example: [atom.rb](../../127387b9fc686370ffa92c01eeed8979df9e1621/Casks/atom.rb#L7#L8)
 
 ## License Stanza Details
 
