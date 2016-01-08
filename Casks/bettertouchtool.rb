@@ -6,12 +6,12 @@ cask 'bettertouchtool' do
     # bettertouchtool.com is the official download host per the vendor homepage
     url "http://bettertouchtool.net/btt#{version}.zip"
   else
-    version '1.47d'
-    sha256 '81b15b17a13018e48edb796f972732d379f22b9f0601300899fea3d77162bc5e'
+    version '1.5b'
+    sha256 'f6408c0ba48588cd547bef4abdcfd723af5133af141f9f7a146d9ee7721f86e6'
 
     url "http://boastr.net/releases/btt#{version}.zip"
     appcast 'http://appcast.boastr.net',
-            :sha256 => 'd22e6a9b68ea9d83446ee27e24023fd734cb258b56f01162db52a0880bba6ef1'
+            :sha256 => '52653a90c3c0940803325ac01aca538f7f8b431e4bca9dfa664489a16bc83d4f'
   end
 
   name 'BetterTouchTool'
@@ -26,7 +26,7 @@ cask 'bettertouchtool' do
   uninstall :login_item => 'BetterTouchTool'
 
   zap :delete => [
-                  '~/Library/Preferences/com.hegenberg.BetterTouchTool.plist',
-                  '~/Library/Application Support/BetterTouchTool',
+                   '~/Library/Preferences/com.hegenberg.BetterTouchTool.plist',
+                   '~/Library/Application Support/BetterTouchTool',
                  ]
 end
