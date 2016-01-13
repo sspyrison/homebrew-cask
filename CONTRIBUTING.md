@@ -23,10 +23,9 @@ $ cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask
 $ git remote add "$github_user" "https://github.com/$github_user/homebrew-cask"
 ```
 
-
 ## Updating a Cask
 
-Notice an application that's out-of-date in Homebrew Cask? In most cases, it's very simple to update it. We have a [script](https://github.com/vitorgalvao/tiny-scripts/blob/master/cask-repair) that will ask for the new version number, and take care of updating the Cask file and submitting a pull request to us.
+Notice an application that's out-of-date in Homebrew-Cask? In most cases, it's very simple to update it. We have a [script](https://github.com/vitorgalvao/tiny-scripts/blob/master/cask-repair) that will ask for the new version number, and take care of updating the Cask file and submitting a pull request to us:
 
 ```bash
 # install and setup script - only needed once
@@ -36,7 +35,7 @@ cask-repair --help
 # use to update <outdated-cask>
 outdated_cask='<the-cask-i-want-to-update>'
 cd "$(brew --repository)/Library/Taps/caskroom/homebrew-cask/Casks"
-cask-repair --pull origin --push $github_user $outdated-cask
+cask-repair --pull origin --push $github_user $outdated_cask
 ```
 
 If there is a more complicated change, or there is a case where `cask-repair` fails, you can also follow the steps in [Adding a Cask](#adding-a-cask) to do the same thing manually. 
@@ -47,7 +46,7 @@ Making a new Cask is easy: a Cask is a small Ruby file.
 
 ### Examples
 
-Here’s a Cask for `shuttle` as an example.
+Here’s a Cask for `shuttle` as an example:
 
 ```ruby
 cask 'shuttle' do
@@ -66,7 +65,6 @@ cask 'shuttle' do
   zap :delete => '~/.shuttle.json'
 end
 ```
-
 
 And here is one for `gateblu`. Note that it has an unversioned download (the download `url` does not contain the version number, unlike the example above). It also suppresses the checksum with `sha256 :no_check` (necessary since the checksum will change when a new distribution is made available). This combination of `version :latest` and `sha256 :no_check` is currently the preferred mechanism when a versioned download URL is not available. Also note the comment above `url`, which is needed when [the url and homepage hostnames differ](doc/CASK_LANGUAGE_REFERENCE.md#when-url-and-homepage-hostnames-differ-add-a-comment):
 
@@ -90,7 +88,9 @@ end
 
 #### `version` methods
 
-In the examples above, when possible the `url` stanza uses `#{version}` ([string interpolation](https://en.wikipedia.org/wiki/String_interpolation#Ruby)) to create a Cask that only needs `version` and `sha256` changes when updated. This can be taken further, when needed, with [ruby String methods](http://ruby-doc.org/core/String.html). For example:
+In the examples above, when possible the `url` stanza uses `#{version}` ([string interpolation](https://en.wikipedia.org/wiki/String_interpolation#Ruby)) to create a Cask that only needs `version` and `sha256` changes when updated. This can be taken further, when needed, with [ruby String methods](http://ruby-doc.org/core/String.html). 
+
+For example:
 
 Instead of
 
@@ -158,7 +158,7 @@ If the `generate_cask_token` script does not work for you, see [Cask Token Detai
 
 ### The `brew cask create` Command
 
-Once you know the token, create your Cask with the handy-dandy `brew cask create` command.
+Once you know the token, create your Cask with the handy-dandy `brew cask create` command:
 
 ```bash
 $ brew cask create my-new-cask
@@ -204,63 +204,6 @@ Other commonly-used stanzas are:
 | `uninstall`        | procedures to uninstall a Cask. Optional unless the `pkg` stanza is used. (see [Uninstall Stanza Details](doc/CASK_LANGUAGE_REFERENCE.md#uninstall-stanza-details))
 
 Additional `artifact` stanzas you might need for special use-cases can be found [here](doc/CASK_LANGUAGE_REFERENCE.md#at-least-one-artifact-stanza-is-also-required). Even more special-use stanzas are listed at [Optional Stanzas](doc/CASK_LANGUAGE_REFERENCE.md#optional-stanzas) and [Legacy Stanzas](doc/CASK_LANGUAGE_REFERENCE.md#legacy-stanzas).
-
-### Stanza order
-
-Having a common order for stanzas makes Casks easier to update and parse. Below is the the complete stanza sequence (no Cask will have all stanzas). The empty lines shown here are also important, as they help to visually delineate information.
-
-```
-version
-sha256
-
-url
-appcast,
-  :sha256 # shown here as it is required with `appcast`
-name
-homepage
-license
-gpg, :key_id # on same line, since first part is typically small
-
-auto_updates
-accessibility_access
-conflicts_with
-depends_on
-container
-
-suite
-app
-pkg
-installer
-binary
-colorpicker
-font
-input_method
-internet_plugin
-prefpane
-qlplugin
-screen_saver
-service
-audio_unit_plugin
-vst_plugin
-artifact, :target # :target shown here as is required with `artifact`
-stage_only
-
-preflight
-
-postflight
-
-uninstall_preflight
-
-uninstall_postflight
-
-uninstall
-
-zap
-
-caveats
-```
-
-Note that every stanza that has additional parameters (`:symbols` after a `,`) shall have them on separate lines, one per line, in alphabetical order. Exceptions are `gpg` and `:target` (when not applied to `url`) which typically consist of short lines.
 
 ### SourceForge/OSDN URLs
 
@@ -343,11 +286,68 @@ cask 'lynkeos' do
 end
 ```
 
+#### Stanza order
+
+Having a common order for stanzas makes Casks easier to update and parse. Below is the the complete stanza sequence (no Cask will have all stanzas). The empty lines shown here are also important, as they help to visually delineate information.
+
+```
+version
+sha256
+
+url
+appcast,
+  :sha256 # shown here as it is required with `appcast`
+name
+homepage
+license
+gpg, :key_id # on same line, since first part is typically small
+
+auto_updates
+accessibility_access
+conflicts_with
+depends_on
+container
+
+suite
+app
+pkg
+installer
+binary
+colorpicker
+font
+input_method
+internet_plugin
+prefpane
+qlplugin
+screen_saver
+service
+audio_unit_plugin
+vst_plugin
+artifact, :target # :target shown here as is required with `artifact`
+stage_only
+
+preflight
+
+postflight
+
+uninstall_preflight
+
+uninstall_postflight
+
+uninstall
+
+zap
+
+caveats
+```
+
+Note that every stanza that has additional parameters (`:symbols` after a `,`) shall have them on separate lines, one per line, in alphabetical order. Exceptions are `gpg` and `:target` (when not applied to `url`) which typically consist of short lines.
+
 ## Testing Your New Cask
 
-Give it a shot with `brew cask install my-new-cask`
+Give it a shot with `brew cask install my-new-cask`.
 
-Did it install? If something went wrong, `brew cask uninstall my-new-cask` and edit your Cask to fix it.
+Did it install? If something went wrong, `brew cask uninstall my-new-cask` and edit your Cask with `brew cask edit my-new-cask` to fix it.
 
 If everything looks good, you’ll also want to make sure your Cask passes audit with:
 
@@ -447,14 +447,14 @@ Commit your changes with `git commit -v`.
 For any git project, some good rules for commit messages are:
 
 * The first line is commit summary, 50 characters or less,
-* Followed by an empty line
+* Followed by an empty line,
 * Followed by an explanation of the commit, wrapped to 72 characters.
 
 See [a note about git commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) for more.
 
 The first line of a commit message becomes the **title** of a pull request on GitHub, like the subject line of an email. Including the key info in the first line will help us respond faster to your pull.
 
-For Cask commits in the homebrew-cask project, we like to include the Application name, version number (or `:latest`), and purpose of the commit in the first line.
+For Cask commits in the Homebrew-Cask project, we like to include the Application name, version number (or `:latest`), and purpose of the commit in the first line.
 
 Examples of good, clear commit summaries:
 
@@ -493,7 +493,7 @@ Congratulations! You are done now, and your Cask should be pulled in or otherwis
 
 ## Cleaning up
 
-After your Pull Request is submitted, you should get yourself back onto `master`, so that `brew update` will pull down new Casks properly.
+After your Pull Request is submitted, you should get yourself back onto `master`, so that `brew update` will pull down new Casks properly:
 
 ```bash
 cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask
