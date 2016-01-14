@@ -4,7 +4,7 @@ cask 'fivedetails-flow' do
 
   url 'http://fivedetails.com/flow/download'
   appcast 'http://extendmac.com/flow/updates/update.php',
-          :sha256 => 'e2cbae3f78c6725a9d2f8f08901afa92c4e75e6686b15011272f2173850eb701'
+          :checkpoint => '1278a4390fd8345f94365aa5dde30ce195f4e879ade82e011ab9a4b6b56f27c6'
   name 'Flow'
   homepage 'http://fivedetails.com/flow/'
   license :commercial

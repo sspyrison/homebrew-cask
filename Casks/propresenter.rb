@@ -4,7 +4,7 @@ cask 'propresenter' do
 
   url "https://www.renewedvision.com/downloads/ProPresenter6_#{version}.dmg"
   appcast 'https://www.renewedvision.com/update/ProPresenter6.php',
-          :sha256 => '1379f17e780a5c27d690002b96c2dc73aeb2bc4a49b454a66fac76dd60920edc'
+          :checkpoint => '3c7e2e98aa1584f563214982667bdae02b2d365aefb39ae3e0a8a951d15681ca'
   name 'ProPresenter'
   homepage 'https://www.renewedvision.com/propresenter.php'
   license :commercial

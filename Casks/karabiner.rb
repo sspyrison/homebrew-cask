@@ -4,7 +4,7 @@ cask 'karabiner' do
 
   url "https://pqrs.org/osx/karabiner/files/Karabiner-#{version}.dmg"
   appcast 'https://pqrs.org/osx/karabiner/files/appcast.xml',
-          :sha256 => 'c6db79c9b765e908ee20fea9d7c2258ee3abca640fb7b1e2b59360299b7c8b0f'
+          :checkpoint => 'e0a355ef67c83a15a8775ddf5b8c5c9fefeca4f6fd5197af550a77ace671e33b'
   name 'Karabiner'
   homepage 'https://pqrs.org/osx/karabiner/'
   license :public_domain

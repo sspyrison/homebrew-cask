@@ -4,7 +4,7 @@ cask 'gitx' do
 
   url 'http://frim.frim.nl/GitXStable.app.zip'
   appcast 'http://gitx.frim.nl/Downloads/appcast.xml',
-          :sha256 => '932c7654b3065834ed45218514ff4a5ac46292a5a04a83b1abacfdfb5f903532'
+          :checkpoint => '55accf881c6e6bc22e4c30d394e7d1b51c7f7b2de4b1a746f5fdeae742311ac9'
   name 'GitX'
   homepage 'http://gitx.frim.nl/'
   license :gpl

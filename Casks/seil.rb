@@ -4,7 +4,7 @@ cask 'seil' do
 
   url "https://pqrs.org/osx/karabiner/files/Seil-#{version}.dmg"
   appcast 'https://pqrs.org/osx/karabiner/files/seil-appcast.xml',
-          :sha256 => 'd9d5a519c003a8c8b396fe7d8d1298d9202e7d252fcd679dd09983005b33f343'
+          :checkpoint => 'b4f7cb8bd2068dc80c6e0c83ac3b446f0050f65f7cd32a250ecbca6c0eec9a9b'
   name 'Seil'
   homepage 'https://pqrs.org/osx/karabiner/seil.html'
   license :public_domain

@@ -4,7 +4,7 @@ cask 'rightfont' do
 
   url "http://rightfontapp.com/downloads/#{version}/rightfont.zip"
   appcast 'http://rightfontapp.com/update/appcast.xml',
-          :sha256 => '12ac031027eaf72848d72ebdc46b68ccfee00563475ac6d7a196aabbbf600242'
+          :checkpoint => 'ddc6c269db42ba428c1a9d4cdb7e034387326d612598307c5c8c443114696226'
   name 'RightFont'
   homepage 'http://rightfontapp.com/'
   license :commercial

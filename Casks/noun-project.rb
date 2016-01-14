@@ -5,7 +5,7 @@ cask 'noun-project' do
   # amazonaws.com is the official download host per the appcast feed
   url "https://s3.amazonaws.com/nounproject/mac/Noun-Project-#{version}.dmg"
   appcast 'https://thenounproject.com/for-mac/feed/',
-          :sha256 => '16aae36066bb6a112fb3b835b7d6c8a4d5dd20105f9fe313ddc99fbc8cc19321'
+          :checkpoint => '5f20b3ebde64e2015c4be14b8b0f93cea927df78cf443ba7c985c314273dbfc2'
   name 'Noun Project'
   homepage 'https://thenounproject.com'
   license :commercial

@@ -4,7 +4,7 @@ cask 'fantastical' do
 
   url "http://cdn.flexibits.com/Fantastical_#{version}.zip"
   appcast 'https://flexibits.com/fantastical/appcast2.php',
-          :sha256 => '26f497fcb0ff1cd5fd8236f0cb422cd27e5222c855bc5a9d6614bb40fd33756a'
+          :checkpoint => 'fb313838d6d63df09c48977ed263b7f293bcfc1084b00f823f38bb7244905c92'
   name 'Fantastical'
   homepage 'https://flexibits.com/fantastical'
   license :freemium

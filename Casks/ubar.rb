@@ -4,7 +4,7 @@ cask 'ubar' do
 
   url "http://www.brawersoftware.com/downloads/ubar/ubar#{version.delete('.')}.zip"
   appcast "http://brawersoftware.com/appcasts/feeds/ubar/ubar#{version.to_i}.xml",
-          :sha256 => '766a1635b0f2fe66ebb27a6f4813c70688d5d99792b023dcf6762721663bc977'
+          :checkpoint => 'ddf4c39193b23631b551efbbb9d2e2d735de2934c645172619bb2e82b25cd5b7'
   name 'uBar'
   homepage 'http://brawersoftware.com/products/ubar'
   license :commercial
