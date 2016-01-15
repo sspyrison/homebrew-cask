@@ -1,4 +1,4 @@
-cask :v1 => 'talend-data-integration' do
+cask 'talend-data-integration' do
   # TODO - TOS 5.x requires java7.  How do we do dependency management with casks?
   # TODO - Must be started like this: ./TOS_DI-linux-gtk-x86_64 -vm /opt/Java/jre1.6.0_11/bin
   # /opt/homebrew-cask/Caskroom/talend-data-integration/5.6.2/TOS_DI-20150508_1414-V5.6.2/TOS_DI-macosx-cocoa.app
