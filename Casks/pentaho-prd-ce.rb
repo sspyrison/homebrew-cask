@@ -1,7 +1,7 @@
 cask 'pentaho-prd-ce' do
-  version '5.4.0.1-130'
-  sha256 'e9409fbc6f954d42f0059eb931e5dbad9d824f9359c6515912d77dd49aaf5c22'
-  url 'http://sourceforge.net/projects/pentaho/files/Report%20Designer/5.4/prd-ce-mac-5.4.0.1-130.zip/download'
+  version '6.1.0.1-196'
+  sha256 '7e34e9a4bfe006386b13756112f152813896ca8b35b7cf569f54c94d21056e6b'
+  url "http://sourceforge.net/projects/pentaho/files/Report%20Designer/#{bigversion}/prd-ce-mac-#{version}.zip/download"
 
   name 'Pentaho Report Designer'
   homepage 'http://community.pentaho.com/'
