@@ -1,10 +1,16 @@
 cask 'plug' do
-  version '2.0.7'
-  sha256 'e716a0b86dbc0fa56c124cfb71a0245ca4ec829b2a6244a1b175006cbb02b773'
+  if MacOS.release <= :mavericks
+    version '0.10.5'
+    sha256 'd8eed07bd1f84d6f1daa7a0699617f2e21c01df2e68924945bcb4889d1251d01'
+    url "http://plugformac.com/files/Plug-#{version}.dmg"
+  else
+    version '2.0.9'
+    sha256 'bead86a9880ae8eb63296b48d6aef30d80d6057a11ca8491dc85a27b296f5e36'
+    appcast "https://www.plugformac.com/updates/plug#{version.major}/sparklecast.xml",
+            checkpoint: '7092bd0eb0a14a478018d36a44addfa4a8dfc871e214f79d66b6a5e1ce216815'
+    url 'https://www.plugformac.com/updates/plug2/Plug-latest.dmg'
+  end
 
-  url 'https://www.plugformac.com/updates/plug2/Plug-latest.dmg'
-  appcast 'https://www.plugformac.com/updates/plug2/sparklecast.xml',
-          checkpoint: 'd2a69b4209eac9d130dc8df70bb97dd2457df2b851eddc9349550ba7d7e784b9'
   name 'Plug'
   homepage 'https://www.plugformac.com/'
   license :gratis

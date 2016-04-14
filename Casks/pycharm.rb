@@ -1,20 +1,22 @@
 cask 'pycharm' do
-  version '5.0.4'
-  sha256 'b6ce56e16077247f4e236a1e628c1d2498583b95ab6a5783857e789ffa219200'
+  version '2016.1.2'
+  sha256 '7af26088b8191bdc5360ec36fead1bbad57cc463b1b18cc67b0e64c0d1285de2'
 
-  url "https://download.jetbrains.com/python/pycharm-professional-#{version}-jdk-bundled.dmg"
+  url "https://download.jetbrains.com/python/pycharm-professional-#{version}.dmg"
   name 'PyCharm'
   homepage 'https://www.jetbrains.com/pycharm/'
   license :commercial
 
   app 'PyCharm.app'
 
+  uninstall delete: '/usr/local/bin/charm'
+
   zap delete: [
-                "~/.PyCharm#{version.major_minor.no_dots}",
-                '~/Library/Preferences/com.jetbrains.PyCharm.plist',
-                "~/Library/Preferences/PyCharm#{version.major_minor.no_dots}",
-                "~/Library/Application Support/PyCharm#{version.major_minor.no_dots}",
-                "~/Library/Caches/PyCharm#{version.major_minor.no_dots}",
-                "~/Library/Logs/PyCharm#{version.major_minor.no_dots}",
+                "~/.PyCharm#{version.major_minor}",
+                # TODO: expand/glob for '~/Library/Preferences/jetbrains.pycharm.*.plist',
+                "~/Library/Preferences/PyCharm#{version.major_minor}",
+                "~/Library/Application Support/PyCharm#{version.major_minor}",
+                "~/Library/Caches/PyCharm#{version.major_minor}",
+                "~/Library/Logs/PyCharm#{version.major_minor}",
               ]
 end
